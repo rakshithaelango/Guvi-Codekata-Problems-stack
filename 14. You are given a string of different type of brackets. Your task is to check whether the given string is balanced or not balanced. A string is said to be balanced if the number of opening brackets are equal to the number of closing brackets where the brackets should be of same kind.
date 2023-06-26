@@ -1,0 +1,44 @@
+You are given a string of different type of brackets. Your task is to check whether the given string is balanced or not balanced. A string is said to be balanced if the number of opening brackets are equal to the number of closing brackets where the brackets should be of same kind.
+Sample Input :
+{}(())[][][{}]
+Sample Output :
+yes
+
+
+
+class Stack:
+    def __init__(self):
+        self.items = []
+    
+    def push(self,data):
+        self.items.append(data)
+        
+    def pop(self):
+        return self.items.pop()
+        
+    def peek(self):
+        return self.items[-1]
+    
+    def isEmpty(self):
+        return self.items == []
+        
+    def size(self):
+        return len(self.items)
+        
+
+exp = input()
+stack = Stack()
+
+for char in exp:
+    if char == "(" or char == "{" or char == "[":
+        stack.push(char)
+    else:
+        if char == ")":
+            if stack.peek() == "(":
+                stack.pop()
+        elif char == "}":
+            if stack.peek() == "{":
+                stack.pop()
+        elif char == "]":
+            if stack.peek() == "[":
+                stack.pop()
